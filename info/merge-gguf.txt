@@ -1,0 +1,33 @@
+#!/bin/bash
+# merge-gguf.sh - Merge split GGUF files
+
+# Navigate to llama.cpp directory
+cd ~/code/ai/llama/llama-cpp/20260213
+
+# Create virtual environment
+echo "Creating virtual environment..."
+python3 -m venv venv
+
+# Activate virtual environment
+echo "Activating virtual environment..."
+source venv/bin/activate
+
+# Install gguf-py
+echo "Installing gguf-py..."
+pip install --upgrade pip
+pip install ./gguf-py
+
+# Merge the split GGUF files
+echo "Merging GGUF files..."
+python3 -m gguf.scripts.gguf_split --merge \
+  models/GLM-4.5-Air-Q4_0-00001-of-00002.gguf \
+  models/GLM-4.5-Air-Q4_0-merged.gguf
+
+# Deactivate virtual environment
+deactivate
+
+echo ""
+echo "Done! Merged file: models/GLM-4.5-Air-Q4_0-merged.gguf"
+echo ""
+echo "Run with:"
+echo "./build/bin/llama-cli -m models/GLM-4.5-Air-Q4_0-merged.gguf -p \"Hello\" -c 8192 -b 512 -ngl 99 -fa -n 256"
