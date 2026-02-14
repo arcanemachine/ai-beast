@@ -1,6 +1,6 @@
 current_date=$(date +%Y%m%d)
 
-git clone "https://github.com/ggerganov/llama.cpp/" $current_date
+git clone "https://github.com/ggerganov/llama.cpp/" --depth 1 $current_date
 
 cd $current_date
 
