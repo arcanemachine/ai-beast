@@ -10,6 +10,8 @@ echo "ROCm Uninstall Script"
 echo "========================================"
 echo ""
 
+sudo amdgpu-install --uninstall --rocmrelease=all
+
 echo "Removing ROCm core packages..."
 sudo apt autoremove -y rocm-core || true
 

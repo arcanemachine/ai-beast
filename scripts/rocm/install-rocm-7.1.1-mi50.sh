@@ -1,37 +1,37 @@
 #!/bin/bash
 
-# ROCm 7.1 Installation Script for AMD MI50
-# This script will install ROCm 7.1 and add gfx906 tensor files for MI50 support
+# ROCm 7.1.1 Installation Script for AMD MI50
+# This script will install ROCm 7.1.1 and add gfx906 tensor files for MI50 support
 # Run this AFTER rebooting from the uninstall script
 
 set -e  # Exit on error
 
 echo "========================================"
-echo "ROCm 7.1 Installation for AMD MI50"
+echo "ROCm 7.1.1 Installation for AMD MI50"
 echo "========================================"
 echo ""
 
 # Create temp directory
 echo "Creating temporary directory..."
-mkdir -p ~/tmp/rocm-install-7-1
-cd ~/tmp/rocm-install-7-1
+mkdir -p ~/tmp/rocm-install-7.1.1
+cd ~/tmp/rocm-install-7.1.1
 echo "Working directory: $(pwd)"
 echo ""
 
-# Step 1: Install ROCm 7.1 Base Packages
+# Step 1: Install ROCm 7.1.1 Base Packages
 echo "========================================"
-echo "Step 1: Installing ROCm 7.1 base packages"
+echo "Step 1: Installing ROCm 7.1.1 base packages"
 echo "========================================"
 echo ""
 
-echo "Downloading ROCm 7.1 installer..."
-wget https://repo.radeon.com/amdgpu-install/7.1/ubuntu/noble/amdgpu-install_7.1.70100-1_all.deb
+echo "Downloading ROCm 7.1.1 installer..."
+wget https://repo.radeon.com/amdgpu-install/7.1.1/ubuntu/noble/amdgpu-install_7.1.1.70101-1_all.deb
 
 echo "Fixing file permissions for apt..."
-chmod 644 amdgpu-install_7.1.70100-1_all.deb
+chmod 644 amdgpu-install_7.1.1.70101-1_all.deb
 
 echo "Installing amdgpu-install package..."
-sudo apt install -y ./amdgpu-install_7.1.70100-1_all.deb
+sudo apt install -y ./amdgpu-install_7.1.1.70101-1_all.deb
 
 echo "Updating package list..."
 sudo apt update
@@ -48,7 +48,7 @@ sudo usermod -a -G render,video $LOGNAME
 echo "Installing ROCm..."
 sudo apt install -y rocm
 
-echo "ROCm 7.1 base packages installed successfully"
+echo "ROCm 7.1.1 base packages installed successfully"
 echo ""
 
 # Step 2: Add gfx906 Tensor Files
@@ -86,7 +86,7 @@ echo ""
 echo "If prompted during boot for MOK enrollment (Secure Boot),"
 echo "follow the on-screen instructions to enroll the kernel module."
 echo ""
-echo "To free up space, you may delete the temp files downloaded to '~/tmp/rocm-install-7-1'."
+echo "To free up space, you may delete the temp files downloaded to '~/tmp/rocm-install-7.1.1'."
 echo ""
 read -p "Reboot now? (y/n): " -n 1 -r
 echo
