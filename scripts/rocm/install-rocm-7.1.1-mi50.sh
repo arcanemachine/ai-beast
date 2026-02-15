@@ -57,11 +57,11 @@ echo "Step 2: Adding gfx906 tensor files for MI50"
 echo "========================================"
 echo ""
 
-echo "Downloading ROCm 6.4 rocblas from Arch Linux repository..."
-wget https://archlinux.org/packages/extra/x86_64/rocblas/download -O rocblas-6.4.3-3-x86_64.pkg.tar.zst
+echo "Downloading ROCm 7.1.1 rocblas from Arch Linux repository..."
+wget https://archive.archlinux.org/packages/r/rocblas/rocblas-7.1.1-1-x86_64.pkg.tar.zst
 
 echo "Extracting rocblas archive..."
-tar -xf rocblas-6.4.3-3-x86_64.pkg.tar.zst
+tar -xf rocblas-7.1.1-1-x86_64.pkg.tar.zst
 
 echo "Copying gfx906 files to ROCm installation..."
 sudo cp opt/rocm/lib/rocblas/library/*gfx906* /opt/rocm/lib/rocblas/library/
