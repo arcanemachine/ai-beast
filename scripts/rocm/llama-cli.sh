@@ -1,4 +1,4 @@
-../../llama-cpp/current/build/bin/llama-cli \
+../../llama.cpp/build/bin/llama-cli \
   -m ../../models/Qwen3-Coder-Next-Q4_0.gguf \
   -ngl 999 \
   -c 65536 \
