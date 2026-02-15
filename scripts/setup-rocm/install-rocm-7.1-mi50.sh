@@ -13,8 +13,8 @@ echo ""
 
 # Create temp directory
 echo "Creating temporary directory..."
-mkdir -p ~/tmp/rocm-install-7-2
-cd ~/tmp/rocm-install-7-2
+mkdir -p ~/tmp/rocm-install-7-1
+cd ~/tmp/rocm-install-7-1
 echo "Working directory: $(pwd)"
 echo ""
 
@@ -38,6 +38,9 @@ sudo apt update
 
 echo "Installing Python dependencies..."
 sudo apt install -y python3-setuptools python3-wheel
+
+echo "Installing OpenSSL (needed for downloading dependencies via HTTPS when building llama.cpp)..."
+sudo apt install -y libssl-dev
 
 echo "Adding user to render and video groups..."
 sudo usermod -a -G render,video $LOGNAME
@@ -82,7 +85,6 @@ echo ""
 echo "If prompted during boot for MOK enrollment (Secure Boot),"
 echo "follow the on-screen instructions to enroll the kernel module."
 echo ""
-echo "Cleaning up temporary files..."
-cd ~
-rm -rf ~/tmp/rocm-install-7-2
+echo "To free up space, you may delete the temp files download to '~/tmp/rocm-install-7-1'."
+echo ""
 echo "Done!"
