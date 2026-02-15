@@ -31,7 +31,7 @@ echo "Fixing file permissions for apt..."
 chmod 644 amdgpu-install_7.1.70100-1_all.deb
 
 echo "Installing amdgpu-install package..."
-sudo apt install -y amdgpu-install_7.1.70100-1_all.deb
+sudo apt install -y ./amdgpu-install_7.1.70100-1_all.deb
 
 echo "Updating package list..."
 sudo apt update
