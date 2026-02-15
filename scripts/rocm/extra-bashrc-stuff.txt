@@ -1,1 +1,1 @@
-export PATH=~/.local/bin:~/code/ai/llama-cpp/current:$PATH
+export PATH=~/.local/bin:~/code/ai/llama.cpp:$PATH
