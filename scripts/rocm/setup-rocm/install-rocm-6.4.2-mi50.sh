@@ -1,37 +1,37 @@
 #!/bin/bash
 
-# ROCm 6.4.2 Installation Script for AMD MI50
-# This script will install ROCm 6.4.2 (last officially supported version for MI50)
+# ROCm 6.4.1 Installation Script for AMD MI50
+# This script will install ROCm 6.4.1 (last officially supported version for MI50)
 # Run this AFTER rebooting from the uninstall script
 
 set -e  # Exit on error
 
 echo "========================================"
-echo "ROCm 6.4.2 Installation for AMD MI50"
+echo "ROCm 6.4.1 Installation for AMD MI50"
 echo "========================================"
 echo ""
 
 # Create temp directory
 echo "Creating temporary directory..."
-mkdir -p ~/tmp/rocm-install-6.4.2
-cd ~/tmp/rocm-install-6.4.2
+mkdir -p ~/tmp/rocm-install-6.4.1
+cd ~/tmp/rocm-install-6.4.1
 echo "Working directory: $(pwd)"
 echo ""
 
-# Install ROCm 6.4.2
+# Install ROCm 6.4.1
 echo "========================================"
-echo "Installing ROCm 6.4.2 base packages"
+echo "Installing ROCm 6.4.1 base packages"
 echo "========================================"
 echo ""
 
-echo "Downloading ROCm 6.4.2 installer..."
-wget https://repo.radeon.com/amdgpu-install/6.4.2/ubuntu/noble/amdgpu-install_6.4.60402-1_all.deb
+echo "Downloading ROCm 6.4.1 installer..."
+wget https://repo.radeon.com/amdgpu-install/6.4.1/ubuntu/noble/amdgpu-install_6.4.60401-1_all.deb
 
 echo "Fixing file permissions for apt..."
-chmod 644 amdgpu-install_6.4.60402-1_all.deb
+chmod 644 amdgpu-install_6.4.60401-1_all.deb
 
 echo "Installing amdgpu-install package..."
-sudo apt install -y ./amdgpu-install_6.4.60402-1_all.deb
+sudo apt install -y ./amdgpu-install_6.4.60401-1_all.deb
 
 echo "Updating package list..."
 sudo apt update
@@ -48,7 +48,7 @@ sudo usermod -a -G render,video $LOGNAME
 echo "Installing ROCm..."
 sudo apt install -y rocm
 
-echo "ROCm 6.4.2 packages installed successfully"
+echo "ROCm 6.4.1 packages installed successfully"
 echo ""
 
 # Step 2: Add gfx906 Tensor Files
