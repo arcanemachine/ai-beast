@@ -18,7 +18,6 @@ cmake -S . \
   -DGGML_HIP=ON \
   -DAMDGPU_TARGETS=gfx906 \
   -DCMAKE_BUILD_TYPE=Release \
-  -DLLAMA_CURL=ON \
   && cmake --build build --config Release -j$(nproc)
 
 cd ..
