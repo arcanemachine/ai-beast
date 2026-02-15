@@ -1,0 +1,39 @@
+NOTE: Don't trust the verbiage used in this file. The concepts were useful for clearing out the other versions of ROCm that had been left over.
+
+---
+
+LLAMA.CPP BUILD FIX FOR MI50 (gfx906) WITH ROCM 6.3.3
+=====================================================
+
+PROBLEM:
+Conflicting HIP libraries - Ubuntu system packages (5.7.x) in /usr/lib 
+were overriding ROCm 6.3.3 headers, causing build failures.
+
+SOLUTION:
+
+1. Remove conflicting Ubuntu HIP packages:
+   sudo apt remove --purge libamdhip64-5 libamdhip64-dev libhipblas0 \
+     libhipblas-dev libhiprtc-builtins5 libhsa-runtime-dev \
+     libhsa-runtime64-1 libhsakmt1
+
+2. Manually remove leftover libraries:
+   sudo rm -f /lib/x86_64-linux-gnu/libamdhip64.so*
+   sudo rm -f /lib/x86_64-linux-gnu/libhipblas.so*
+   sudo rm -f /lib/x86_64-linux-gnu/libhiprtc-builtins.so*
+   sudo ldconfig
+
+3. Verify only ROCm 6.3.3 remains:
+   ldconfig -p | grep hip
+   (Should only show /opt/rocm-6.3.3/lib/ paths)
+
+4. Build llama.cpp:
+   cd ~/ai/llama.cpp
+   rm -rf build
+   cmake -S . -B build -DGGML_HIP=ON -DAMDGPU_TARGETS=gfx906 \
+     -DCMAKE_BUILD_TYPE=Release
+   cmake --build build --config Release -j$(nproc)
+
+NOTES:
+- Use ROCm 6.3.3 (last version with bundled gfx906 tensile files)
+- ROCm 7.x requires code patches for hipStreamWaitEvent API changes
+- Binaries will be in build/bin/

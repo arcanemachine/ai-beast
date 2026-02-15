@@ -1,12 +1,12 @@
 ../../llama.cpp/build/bin/llama-server \
   -m ../../models/Qwen3-Coder-Next-Q4_0.gguf \
   -ngl 999 \
-  --ctx-size 120000 \
-  -c 120000 \
+  --ctx-size 180000 \
+  -c 180000 \
   -n 8192 \
   -b 2048 \
   --no-mmap \
-  --parallel 4 \
+  --parallel 3 \
   --temp 0.1 \
   --top-p 0.9 \
   --host 0.0.0.0

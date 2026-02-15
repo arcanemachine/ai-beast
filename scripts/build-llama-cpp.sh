@@ -1,0 +1,21 @@
+#!/bin/bash
+
+set -e
+
+cd "$(dirname "$0")"
+
+cd ../../llama.cpp
+
+if [ -d "build" ]; then
+  backup_dir="build.$(date +%s)"
+
+  echo "Build directory exists: Backing up to ${backup_dir}..."
+
+  mv build $backup_dir
+fi
+
+echo "Building llama.cpp for gfx906..."
+
+GGML_CCACHE=OFF HIPCXX="$(hipconfig -l)/clang" HIP_PATH="$(hipconfig -R)" \
+cmake -S . -B build -DGGML_HIP=ON -DAMDGPU_TARGETS=gfx906  -DCMAKE_BUILD_TYPE=Release \
+&& cmake --build build --config Release -j $(nproc)

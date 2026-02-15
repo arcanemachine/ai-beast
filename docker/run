@@ -11,4 +11,4 @@
 #       -v ./scripts/:/scripts/ \
 #       rocm/dev-ubuntu-24.04:6.4-complete
 
-docker run -it --name llm --net host --rm -v ../../models:/models docker.io/mixa3607/llama.cpp-gfx906:full-rocm-6.3.3 --server -m /models/qwen3-4b-Q4_0.gguf --host 0.0.0.0
+docker run -it --rm --name llm --net host --entrypoint bash -v ../../models:/models docker.io/mixa3607/llama.cpp-gfx906:full-rocm-6.3.3
