@@ -77,14 +77,22 @@ echo "========================================"
 echo "Installation Complete!"
 echo "========================================"
 echo ""
-echo "Next steps:"
-echo "1. Reboot your system: sudo reboot"
-echo "2. After reboot, verify installation with: rocminfo"
-echo "3. Check ROCm version with: sudo update-alternatives --display rocm"
+echo "You MUST reboot to load the new ROCm kernel modules."
+echo ""
+echo "After reboot, verify installation with:"
+echo "  - rocminfo"
+echo "  - sudo update-alternatives --display rocm"
 echo ""
 echo "If prompted during boot for MOK enrollment (Secure Boot),"
 echo "follow the on-screen instructions to enroll the kernel module."
 echo ""
-echo "To free up space, you may delete the temp files download to '~/tmp/rocm-install-7-1'."
+echo "To free up space, you may delete the temp files downloaded to '~/tmp/rocm-install-7-1'."
 echo ""
-echo "Done!"
+read -p "Reboot now? (y/n): " -n 1 -r
+echo
+if [[ $REPLY =~ ^[Yy]$ ]]
+then
+    sudo reboot
+else
+    echo "Remember to reboot before using ROCm!"
+fi

@@ -36,10 +36,10 @@ echo "========================================"
 echo "Uninstall Complete!"
 echo "========================================"
 echo ""
-echo "You MUST reboot before installing ROCm 7.2"
+echo "You MUST reboot before installing a new version of ROCm."
 echo "This ensures all old kernel modules are unloaded."
 echo ""
-echo "After reboot, run: ./install-rocm-7.2-mi50.sh"
+echo "After reboot, run: ./install-rocm-x.x-mi50.sh"
 echo ""
 read -p "Reboot now? (y/n): " -n 1 -r
 echo
@@ -47,5 +47,5 @@ if [[ $REPLY =~ ^[Yy]$ ]]
 then
     sudo reboot
 else
-    echo "Remember to reboot before installing ROCm 7.2!"
+    echo "Remember to reboot before installing a new version of ROCm!"
 fi
