@@ -1,0 +1,14 @@
+# export MODEL_PATH='./models'
+# 
+# docker run -it \
+#       --name=llamacpp \
+#       --privileged --network=host \
+#       --device=/dev/kfd --device=/dev/dri \
+#       --group-add video --cap-add=SYS_PTRACE \
+#       --security-opt seccomp=unconfined \
+#       --ipc=host --shm-size 16G \
+#       -v $MODEL_PATH:/data \
+#       -v ./scripts/:/scripts/ \
+#       rocm/dev-ubuntu-24.04:6.4-complete
+
+docker run -it --name llm --net host --rm -v ../../models:/models docker.io/mixa3607/llama.cpp-gfx906:full-rocm-6.3.3 --server -m /models/qwen3-4b-Q4_0.gguf --host 0.0.0.0
