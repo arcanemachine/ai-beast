@@ -1,37 +1,55 @@
 #!/bin/bash
 
-# ROCm Uninstall Script
-# This script will remove all previous ROCm versions
+# ROCm Complete Uninstallation Script for Ubuntu
+# Run with: sudo bash uninstall_rocm.sh
 
-set -e  # Exit on error
+set -e
 
-echo "========================================"
-echo "ROCm Uninstall Script"
-echo "========================================"
+echo "=== ROCm Complete Uninstallation Script ==="
 echo ""
 
-sudo amdgpu-install --uninstall --rocmrelease=all
+# Check if running as root
+if [ "$EUID" -ne 0 ]; then
+    echo "Please run as root (use sudo)"
+    exit 1
+fi
 
-echo "Removing ROCm core packages..."
-sudo apt autoremove -y rocm-core || true
+echo "[1/9] Running amdgpu-install uninstall..."
+if command -v amdgpu-install &> /dev/null; then
+    amdgpu-install --uninstall || true
+else
+    echo "amdgpu-install not found, skipping..."
+fi
 
-echo "Removing AMDGPU DKMS..."
-sudo apt autoremove -y amdgpu-dkms || true
+echo "[2/9] Removing ROCm core packages..."
+apt autoremove -y rocm || true
+apt autoremove -y rocm-core || true
 
-echo "Purging amdgpu-install..."
-sudo apt purge -y amdgpu-install || true
+echo "[3/9] Purging all ROCm-related packages..."
+apt remove --purge -y 'rocm*' 'rock-dkms' 'hsa-rocr-dev' || true
+apt remove --purge -y 'amdgpu*' 'amd*' || true
 
-echo "Removing all HSA/HIP/LLVM/ROCm packages..."
-sudo apt-get purge -y hsa* hip* llvm* rocm* || true
+echo "[4/9] Removing kernel driver..."
+apt autoremove -y amdgpu-dkms || true
 
-echo "Removing repository files..."
-sudo rm -f /etc/apt/sources.list.d/rocm.list
-sudo rm -f /etc/apt/sources.list.d/amdgpu.list
+echo "[5/9] Running autoremove cleanup..."
+apt autoremove --purge -y
 
-echo "Clearing cache..."
-sudo rm -rf /var/cache/apt/*
-sudo apt-get clean all
-sudo apt autoremove -y
+echo "[6/9] Removing ROCm directories..."
+rm -rf /opt/rocm*
+
+echo "[7/9] Removing repository files..."
+rm -f /etc/apt/sources.list.d/rocm.list
+rm -f /etc/apt/sources.list.d/amdgpu.list
+rm -rf /etc/apt/sources.list.d/amdgpu*
+rm -rf /etc/apt/sources.list.d/rocm*
+
+echo "[8/9] Clearing package cache..."
+rm -rf /var/cache/apt/*
+apt clean all
+
+echo "[9/9] Updating package lists..."
+apt update
 
 echo ""
 echo "========================================"
@@ -51,3 +69,4 @@ then
 else
     echo "Remember to reboot before installing a new version of ROCm!"
 fi
+cho ""
