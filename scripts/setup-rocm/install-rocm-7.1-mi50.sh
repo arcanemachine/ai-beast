@@ -1,13 +1,13 @@
 #!/bin/bash
 
-# ROCm 7.2 Installation Script for AMD MI50
-# This script will install ROCm 7.2 and add gfx906 tensor files for MI50 support
+# ROCm 7.1 Installation Script for AMD MI50
+# This script will install ROCm 7.1 and add gfx906 tensor files for MI50 support
 # Run this AFTER rebooting from the uninstall script
 
 set -e  # Exit on error
 
 echo "========================================"
-echo "ROCm 7.2 Installation for AMD MI50"
+echo "ROCm 7.1 Installation for AMD MI50"
 echo "========================================"
 echo ""
 
@@ -18,20 +18,20 @@ cd ~/tmp/rocm-install-7-2
 echo "Working directory: $(pwd)"
 echo ""
 
-# Step 1: Install ROCm 7.2 Base Packages
+# Step 1: Install ROCm 7.1 Base Packages
 echo "========================================"
-echo "Step 1: Installing ROCm 7.2 base packages"
+echo "Step 1: Installing ROCm 7.1 base packages"
 echo "========================================"
 echo ""
 
-echo "Downloading ROCm 7.2 installer..."
-wget https://repo.radeon.com/amdgpu-install/7.2/ubuntu/noble/amdgpu-install_7.2.70200-1_all.deb
+echo "Downloading ROCm 7.1 installer..."
+wget https://repo.radeon.com/amdgpu-install/7.1/ubuntu/noble/amdgpu-install_7.1.70100-1_all.deb
 
 echo "Fixing file permissions for apt..."
-chmod 644 amdgpu-install_7.2.70200-1_all.deb
+chmod 644 amdgpu-install_7.1.70100-1_all.deb
 
 echo "Installing amdgpu-install package..."
-sudo apt install -y ./amdgpu-install_7.2.70200-1_all.deb
+sudo apt install -y amdgpu-install_7.1.70100-1_all.deb
 
 echo "Updating package list..."
 sudo apt update
@@ -45,7 +45,7 @@ sudo usermod -a -G render,video $LOGNAME
 echo "Installing ROCm..."
 sudo apt install -y rocm
 
-echo "ROCm 7.2 base packages installed successfully"
+echo "ROCm 7.1 base packages installed successfully"
 echo ""
 
 # Step 2: Add gfx906 Tensor Files

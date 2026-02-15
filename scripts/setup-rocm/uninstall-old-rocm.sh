@@ -1,6 +1,3 @@
-Script 1: uninstall-rocm.sh
-bash
-
 #!/bin/bash
 
 # ROCm Uninstall Script
