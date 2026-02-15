@@ -65,7 +65,7 @@ read -p "Reboot now? (y/n): " -n 1 -r
 echo
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
-    sudo reboot
+    reboot
 else
     echo "Remember to reboot before installing a new version of ROCm!"
 fi
