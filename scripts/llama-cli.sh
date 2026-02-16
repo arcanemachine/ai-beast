@@ -9,7 +9,7 @@ fi
 ../../llama.cpp/build/bin/llama-cli \
   -m $model_path \
   -ngl 999 \
-  -c 65536 \
+  -c 100000 \
   -n 4096 \
   --no-mmap \
   --temp 0.1
