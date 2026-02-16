@@ -1,9 +1,14 @@
 #!/bin/sh
 
+# For multimodal, use '--mmproj' with the image model (Text model still needed as first arg). For example:
+#
+#     ./llama-server ../../models/Qwen3-VL-30B-A3B-Instruct-Q4_0.gguf --mmproj ../../models/mmproj-F16.gguf
+
 model_path="../../models/Qwen3-Coder-Next-Q4_0.gguf"
 
 if [ "$1" != "" ]; then
   model_path=$1
+  shift
 fi
 
 ../../llama.cpp/build/bin/llama-server \
@@ -17,4 +22,4 @@ fi
   --parallel 4 \
   --temp 0.1 \
   --top-p 0.9 \
-  --host 0.0.0.0
+  --host 0.0.0.0 $@
