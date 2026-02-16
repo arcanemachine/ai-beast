@@ -1,11 +1,11 @@
 #!/bin/sh
 
-# For multimodal, use '--mmproj' with the image model (Text model still needed as first arg). For example:
+# For multimodal, use '--mmproj' with the image model. For example:
 #
-#     ./llama-server ../../models/Qwen3-VL-30B-A3B-Instruct-Q4_0.gguf --mmproj ../../models/mmproj-F16.gguf
+#     MODEL=../../models/Qwen3-VL-30B-A3B-Instruct-Q4_0.gguf ./llama-server --mmproj ../../models/mmproj-F16.gguf
 
 context=${CONTEXT:-400000}
-model=${MODEL:-../../models/Qwen3-Coder-Next-Q4_0.gguf}
+model=${MODEL:-'../../models/Qwen3-Coder-Next-Q4_0.gguf'}
 
 ../../llama.cpp/build/bin/llama-server \
   -m $model \
