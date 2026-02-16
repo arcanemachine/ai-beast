@@ -4,18 +4,14 @@
 #
 #     ./llama-server ../../models/Qwen3-VL-30B-A3B-Instruct-Q4_0.gguf --mmproj ../../models/mmproj-F16.gguf
 
-model_path="../../models/Qwen3-Coder-Next-Q4_0.gguf"
-
-if [ "$1" != "" ]; then
-  model_path=$1
-  shift
-fi
+context=${CONTEXT:-400000}
+model=${MODEL:-../../models/Qwen3-Coder-Next-Q4_0.gguf}
 
 ../../llama.cpp/build/bin/llama-server \
-  -m $model_path \
+  -m $model \
   -ngl 999 \
-  --ctx-size 400000 \
-  -c 400000 \
+  --ctx-size $context \
+  -c $context \
   -n 8192 \
   -b 2048 \
   --no-mmap \

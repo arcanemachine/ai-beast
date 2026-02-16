@@ -1,15 +1,12 @@
 #!/bin/sh
 
-model_path="../../models/Qwen3-Coder-Next-Q4_0.gguf"
-
-if [ "$1" != "" ]; then
-  model_path=$1
-fi
+context=${CONTEXT:-400000}
+model=${MODEL:-../../models/Qwen3-Coder-Next-Q4_0.gguf}
 
 ../../llama.cpp/build/bin/llama-cli \
-  -m $model_path \
+  -m $model \
   -ngl 999 \
-  -c 100000 \
+  --ctx-size $context \
   -n 4096 \
   --no-mmap \
   --temp 0.1
