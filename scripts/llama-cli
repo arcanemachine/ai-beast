@@ -1,5 +1,9 @@
 #!/bin/sh
 
+set -e
+
+cd $(dirname "$0")
+
 context=${CONTEXT:-400000}
 model=${MODEL:-"../../models/Qwen3-Coder-Next-Q4_0.gguf"}
 

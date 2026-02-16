@@ -1,1 +1,5 @@
+set -e
+
+cd $(dirname "$0")
+
 ../../llama.cpp/build/bin/llama-bench $@
