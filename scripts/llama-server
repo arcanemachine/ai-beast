@@ -2,7 +2,7 @@
 
 model_path="../../models/Qwen3-Coder-Next-Q4_0.gguf"
 
-if [ $1 != "" ]; then
+if [ "$1" != "" ]; then
   model_path=$1
 fi
 
