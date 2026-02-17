@@ -3,7 +3,7 @@
 read -p "Are you sure you want to suspend? [y/N] " -n 1 -r
 echo
 if [[ $REPLY =~ ^[Yy]$ ]]; then
-    systemctl suspend
+  sudo systemctl suspend
 else
-    echo "Suspend cancelled."
+  echo "Suspend cancelled."
 fi
