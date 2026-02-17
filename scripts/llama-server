@@ -8,7 +8,7 @@ set -e
 
 cd $(dirname "$0")
 
-context=${CONTEXT:-400000}
+context=${CONTEXT:-200000}
 model=${MODEL:-'../../models/Qwen3-Coder-Next-Q4_0.gguf'}
 
 ../../llama.cpp/build/bin/llama-server \
@@ -19,7 +19,7 @@ model=${MODEL:-'../../models/Qwen3-Coder-Next-Q4_0.gguf'}
   -n 8192 \
   -b 2048 \
   --no-mmap \
-  --parallel 4 \
+  --parallel 2 \
   --temp 0.1 \
   --top-p 0.9 \
   --host 0.0.0.0 $@
