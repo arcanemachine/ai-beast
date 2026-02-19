@@ -9,7 +9,7 @@ set -e
 cd $(dirname "$0")
 
 context=${CONTEXT:-200000}
-model=${MODEL:-'../../models/Qwen3-Coder-Next-Q4_0.gguf'}
+model=${MODEL:-'../../models/Qwen3-Coder-Next-Q4_K_M.gguf'}
 
 ../../llama.cpp/build/bin/llama-server \
   -m $model \
@@ -17,7 +17,8 @@ model=${MODEL:-'../../models/Qwen3-Coder-Next-Q4_0.gguf'}
   --ctx-size $context \
   -c $context \
   -n 8192 \
-  -b 2048 \
+  -b 4096 \
+  -ub 4096 \
   --no-mmap \
   --parallel 2 \
   --temp 0.1 \
