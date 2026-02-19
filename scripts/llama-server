@@ -15,7 +15,6 @@ model=${MODEL:-'../../models/Qwen3-Coder-Next-Q4_K_M.gguf'}
   -m $model \
   -ngl 999 \
   --ctx-size $context \
-  --cache-type-k q8_0 \
   -c $context \
   -n 8192 \
   -b 2048 \
