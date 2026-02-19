@@ -11,6 +11,8 @@ cd $(dirname "$0")
 context=${CONTEXT:-200000}
 model=${MODEL:-'../../models/Qwen3-Coder-Next-Q4_K_M.gguf'}
 
+export CUDA_VISIBLE_DEVICES=${CUDA_VISIBLE_DEVICES:-0,2}
+
 ../../llama.cpp/build/bin/llama-server \
   -m $model \
   -ngl 999 \
