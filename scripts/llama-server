@@ -17,8 +17,8 @@ model=${MODEL:-'../../models/Qwen3-Coder-Next-Q4_K_M.gguf'}
   --ctx-size $context \
   -c $context \
   -n 8192 \
-  -b 4096 \
-  -ub 4096 \
+  -b 2048 \
+  -ub 2048 \
   --no-mmap \
   --parallel 2 \
   --temp 0.1 \

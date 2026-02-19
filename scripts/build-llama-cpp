@@ -17,5 +17,5 @@ fi
 echo "Building llama.cpp for gfx906..."
 
 GGML_CCACHE=OFF HIPCXX="$(hipconfig -l)/clang" HIP_PATH="$(hipconfig -R)" \
-cmake -S . -B build -DGGML_HIP=ON -DAMDGPU_TARGETS=gfx906  -DCMAKE_BUILD_TYPE=Release \
+cmake -S . -B build -DGGML_HIP=ON -DAMDGPU_TARGETS=gfx906 -DGGML_HIP_ROCWMMA_FATTN=ON -DCMAKE_BUILD_TYPE=Release \
 && cmake --build build --config Release -j $(nproc)

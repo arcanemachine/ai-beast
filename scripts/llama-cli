@@ -12,6 +12,6 @@ model=${MODEL:-"../../models/Qwen3-Coder-Next-Q4_K_M.gguf"}
   -ngl 999 \
   --ctx-size $context \
   -n 8192 \
-  -b 4096 \
-  -ub 4096 \
+  -b 2048 \
+  -ub 2048 \
   --temp 0.1
