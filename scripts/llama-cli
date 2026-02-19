@@ -15,3 +15,13 @@ model=${MODEL:-"../../models/Qwen3-Coder-Next-Q4_K_M.gguf"}
   -b 2048 \
   -ub 2048 \
   --temp 0.1
+
+# ## Example of a more thorough bench
+# llama-bench -m $model -ngl 999 -ub 4096 -b 4096 -fa \
+#   -p 512,2048,8192 -n 128 -r 3
+#
+#     -p — tests multiple prompt lengths closer to real use
+#
+#     -n 128 — a few generation tokens is enough to measure decode speed
+#
+#     -r 3 — repeat 3 times for a stable average
