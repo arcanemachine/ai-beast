@@ -4,13 +4,12 @@ set -e
 
 cd $(dirname "$0")
 
-context=${CONTEXT:-400000}
-model=${MODEL:-"../../models/Qwen3-Coder-Next-Q4_K_M.gguf"}
+context=${CONTEXT:-120000}
+model=${MODEL:-"/home/$USER/code/ai/models/Qwen3-Coder-Next-Q4_K_M.gguf"}
 
 ../../llama.cpp/build/bin/llama-cli \
   -m $model \
-  -ngl 999 \
-  --ctx-size $context \
+  -c $context \
   -n 8192 \
   -b 2048 \
   -ub 2048 \
