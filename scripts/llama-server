@@ -17,8 +17,9 @@ export CUDA_VISIBLE_DEVICES=${CUDA_VISIBLE_DEVICES:-0,2}
   -m $model \
   -c $context \
   -n 8192 \
-  -b 4096 \
-  -ub 4096 \
+  -b 2048 \
+  -ub 2048 \
+  --no-mmap \
   --temp 1.0 \
   --top-p 0.95 \
   --top-k 40 \
